@@ -1,0 +1,22 @@
+server:
+  port: 8080
+spring:
+  jpa:
+    defer-datasource-initialization: true
+    properties.hibernate.format_sql: true
+    generate-ddl: true
+    hibernate.ddl.auto: update
+    show-sql: true
+    database-platform: org.hibernate.dialect.PostgreSQLDialect # Specify PostgreSQL dialect
+
+  properties:
+    hibernate:
+      jdbc:
+        lob:
+          non_contextual_creation: true
+  application:
+    name: user-service
+  datasource:
+    username: ${USER_DB:postgres}
+    password: ${PASSWORD_DB:admin@123}
+    url: ${HOST_DB:jdbc:postgresql://localhost:5432/events?useSSL=false}

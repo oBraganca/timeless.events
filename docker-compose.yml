@@ -1,0 +1,22 @@
+version: '3'
+services:
+  postgres-user-service:
+    image: postgres:latest
+    container_name: postgres-events
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: events
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: admin@123
+    volumes:
+      - my-db:/var/lib/postgres
+    networks:
+      - events-network
+
+volumes:
+  my-db:
+
+networks:
+  events-network:

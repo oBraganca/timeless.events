@@ -1,0 +1,16 @@
+version: '3'
+services:
+
+  user-service:
+    image: obraganca/timeless-events:1.0
+    networks:
+      - events-network
+    container_name: events-app
+    build: ./events
+    restart: always
+    environment:
+      - HOST_DB=jdbc:mysql://postgres-events:5432/events?useSSL=false
+    ports:
+      - "8080:8080"
+networks:
+  events-network:
