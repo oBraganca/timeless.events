@@ -1,12 +1,19 @@
 package com.timeless.events.model;
 
 import jakarta.persistence.*;
+import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+import java.io.Serializable;
 import java.util.UUID;
 
 @Entity
 @Table(name="country")
-public class Country {
+@Data
+public class Country  {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
