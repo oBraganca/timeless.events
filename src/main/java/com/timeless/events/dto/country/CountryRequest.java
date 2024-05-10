@@ -8,5 +8,5 @@ public class CountryRequest {
     @NotNull
     private String name;
     @NotNull
-    private String phoneCountryCode;
+    private Integer phoneCountryCode;
 }

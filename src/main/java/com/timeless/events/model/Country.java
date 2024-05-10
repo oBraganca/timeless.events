@@ -1,15 +1,13 @@
 package com.timeless.events.model;
 
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.io.Serializable;
 import java.util.UUID;
 
 @Entity
+@Builder
 @Table(name="country")
 @Data
 public class Country  {

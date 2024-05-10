@@ -25,19 +25,23 @@ public class CountryServiceImpl implements ICountryService {
 
 
     @Override
-    public ResponseEntity<Void> createCountry(CountryRequest countryRequestDto) throws Exception {
+    public void createCountry(CountryRequest countryRequestDto) throws Exception {
 
-        if(iCountryRepository.findByName(countryRequestDto.getName())){
+        Country country = iCountryRepository.findByName(countryRequestDto.getName());
+
+        if(country != null){
             throw new Exception();
         }
 
-        if(iCountryRepository.findByName(countryRequestDto.getPhoneCountryCode())){
+        country = iCountryRepository.findByPhoneCountryCode(countryRequestDto.getPhoneCountryCode());
+        if(country != null){
             throw new Exception();
         }
 
-        Country country;
-        this.iCountryRepository.save(Country.Builder);
-        return null;
+        this.iCountryRepository.save(Country.builder()
+                .name(countryRequestDto.getName())
+                .phoneCountryCode(countryRequestDto.getPhoneCountryCode())
+        );
     }
 
     @Override

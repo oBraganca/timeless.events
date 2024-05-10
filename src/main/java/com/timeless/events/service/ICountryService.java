@@ -10,7 +10,7 @@ import java.util.UUID;
 
 @Service
 public interface ICountryService {
-    ResponseEntity<Void> createCountry(CountryRequest countryRequestDto) throws Exception;
+    void createCountry(CountryRequest countryRequestDto) throws Exception;
     ResponseEntity<List<CountryResponse>> getAllCountry();
     ResponseEntity<CountryResponse> getCountryById(UUID id);
     ResponseEntity<Void> updateCountry(CountryRequest countryRequestDto);

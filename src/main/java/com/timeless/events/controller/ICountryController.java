@@ -11,7 +11,7 @@ import java.util.UUID;
 
 @Validated
 public interface ICountryController {
-    ResponseEntity<Void> createCountry(CountryRequest countryRequestDto);
+    ResponseEntity<Void> createCountry(CountryRequest countryRequestDto) throws Exception;
     ResponseEntity<List<CountryResponse>> getAllCountry();
     ResponseEntity<CountryResponse> getCountryById(UUID id);
     ResponseEntity<Void> updateCountry(CountryRequest countryRequestDto);
