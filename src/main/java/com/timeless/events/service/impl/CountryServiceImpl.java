@@ -43,24 +43,23 @@ public class CountryServiceImpl implements ICountryService {
                 .phoneCountryCode(countryRequestDto.getPhoneCountryCode())
         );
     }
+    @Override
+    public List<CountryResponse> getAllCountry(){
+        return iCountryRepository.findAllCountryDTO();
+    }
 
     @Override
-    public ResponseEntity<List<CountryResponse>> getAllCountry() {
+    public CountryResponse getCountryById(UUID id) {
         return null;
     }
 
     @Override
-    public ResponseEntity<CountryResponse> getCountryById(UUID id) {
+    public void updateCountry(CountryRequest countryRequestDto) {
         return null;
     }
 
     @Override
-    public ResponseEntity<Void> updateCountry(CountryRequest countryRequestDto) {
-        return null;
-    }
+    public void deleteCountry(UUID id) {
 
-    @Override
-    public ResponseEntity<Void> deleteCountry(UUID id) {
-        return null;
     }
 }

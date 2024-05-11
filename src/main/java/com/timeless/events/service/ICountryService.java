@@ -2,6 +2,7 @@ package com.timeless.events.service;
 
 import com.timeless.events.dto.country.CountryRequest;
 import com.timeless.events.dto.country.CountryResponse;
+import com.timeless.events.repository.ICountryRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -11,8 +12,8 @@ import java.util.UUID;
 @Service
 public interface ICountryService {
     void createCountry(CountryRequest countryRequestDto) throws Exception;
-    ResponseEntity<List<CountryResponse>> getAllCountry();
-    ResponseEntity<CountryResponse> getCountryById(UUID id);
-    ResponseEntity<Void> updateCountry(CountryRequest countryRequestDto);
-    ResponseEntity<Void> deleteCountry(UUID id);
+    List<CountryResponse> getAllCountry();
+    CountryResponse getCountryById(UUID id);
+    void updateCountry(CountryRequest countryRequestDto);
+    void deleteCountry(UUID id);
 }
