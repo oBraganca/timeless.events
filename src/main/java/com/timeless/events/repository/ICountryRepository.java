@@ -14,8 +14,11 @@ import java.util.UUID;
 public interface ICountryRepository extends JpaRepository<Country, UUID> {
     Optional<Country> findById(UUID id);
 
+    Country findByNameAndIdNot (String name, UUID id);
+    Country findByPhoneCountryCodeAndIdNot(Integer name, UUID id);
     @Query("SELECT new com.timeless.events.dto.country.CountryResponse(c.id, c.name, c.phone_country_code) FROM country c")
     List<CountryResponse> findAllCountryDTO();
+
     public <S extends Country.CountryBuilder> S save(S entity);
     Country findByName(String name);
     Country findByPhoneCountryCode(Integer phoneCountryCode);

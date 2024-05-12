@@ -14,6 +14,6 @@ public interface ICountryService {
     void createCountry(CountryRequest countryRequestDto) throws Exception;
     List<CountryResponse> getAllCountry();
     CountryResponse getCountryById(UUID id);
-    void updateCountry(CountryRequest countryRequestDto);
-    void deleteCountry(UUID id);
+    void updateCountry(CountryRequest countryRequestDto) throws Exception;
+    void deleteCountry(UUID id) throws Exception;
 }

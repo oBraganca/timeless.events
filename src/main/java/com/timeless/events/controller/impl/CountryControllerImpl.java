@@ -35,21 +35,23 @@ public class CountryControllerImpl implements ICountryController {
 
     @Override
     public ResponseEntity<List<CountryResponse>> getAllCountry() {
-        return null;
+        return new ResponseEntity<>(iCountryService.getAllCountry(), HttpStatus.OK);
     }
 
     @Override
     public ResponseEntity<CountryResponse> getCountryById(UUID id) {
-        return null;
+        return new ResponseEntity<>(iCountryService.getCountryById(id), HttpStatus.OK);
     }
 
     @Override
-    public ResponseEntity<Void> updateCountry(CountryRequest countryRequestDto) {
-        return null;
+    public ResponseEntity<Void> updateCountry(CountryRequest countryRequestDto) throws Exception {
+        iCountryService.updateCountry(countryRequestDto);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @Override
-    public ResponseEntity<Void> deleteCountry(UUID id) {
-        return null;
+    public ResponseEntity<Void> deleteCountry(UUID id) throws Exception {
+        iCountryService.deleteCountry(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

@@ -50,16 +50,46 @@ public class CountryServiceImpl implements ICountryService {
 
     @Override
     public CountryResponse getCountryById(UUID id) {
-        return null;
+        Optional<Country> country = iCountryRepository.findById(id);
+        return new CountryResponse(country.get().getId(), country.get().getName(), country.get().getPhoneCountryCode());
     }
 
     @Override
-    public void updateCountry(CountryRequest countryRequestDto) {
-        return null;
+    public void updateCountry(CountryRequest countryRequestDto) throws Exception {
+        Optional<Country> optionalCountry = iCountryRepository.findById(countryRequestDto.getId());
+
+        if (!optionalCountry.isPresent()) {
+            throw new Exception();
+        }
+
+
+        // Check if another country with the same name or phone country code already exists
+        Country byName = iCountryRepository.findByNameAndIdNot(countryRequestDto.getName(), countryRequestDto.getId());
+        if (byName != null) {
+            throw new Exception();
+        }
+
+        Country byPhoneCountryCode = iCountryRepository.findByPhoneCountryCodeAndIdNot(countryRequestDto.getPhoneCountryCode(), countryRequestDto.getId());
+        if (byPhoneCountryCode != null) {
+            throw new Exception();
+        }
+
+        Country existingCountry = optionalCountry.get();
+
+        existingCountry.setName(countryRequestDto.getName());
+        existingCountry.setPhoneCountryCode(countryRequestDto.getPhoneCountryCode());
+
+        iCountryRepository.save(existingCountry);
     }
 
     @Override
-    public void deleteCountry(UUID id) {
+    public void deleteCountry(UUID id) throws Exception {
+        Optional<Country> optionalCountry = iCountryRepository.findById(id);
 
+        if (!optionalCountry.isPresent()) {
+            throw new Exception();
+        }
+
+        iCountryRepository.deleteById(id);
     }
 }

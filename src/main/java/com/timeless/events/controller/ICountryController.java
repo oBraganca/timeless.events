@@ -14,7 +14,7 @@ public interface ICountryController {
     ResponseEntity<Void> createCountry(CountryRequest countryRequestDto) throws Exception;
     ResponseEntity<List<CountryResponse>> getAllCountry();
     ResponseEntity<CountryResponse> getCountryById(UUID id);
-    ResponseEntity<Void> updateCountry(CountryRequest countryRequestDto);
-    ResponseEntity<Void> deleteCountry(UUID id);
+    ResponseEntity<Void> updateCountry(CountryRequest countryRequestDto) throws Exception;
+    ResponseEntity<Void> deleteCountry(UUID id) throws Exception;
 
 }
