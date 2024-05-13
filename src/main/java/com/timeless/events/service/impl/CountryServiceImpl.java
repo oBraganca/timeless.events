@@ -3,6 +3,7 @@ package com.timeless.events.service.impl;
 import com.timeless.events.controller.ICountryController;
 import com.timeless.events.dto.country.CountryRequest;
 import com.timeless.events.dto.country.CountryResponse;
+import com.timeless.events.handler.exceptions.CountryNotFoundException;
 import com.timeless.events.model.Country;
 import com.timeless.events.repository.ICountryRepository;
 import com.timeless.events.service.ICountryService;
@@ -59,7 +60,7 @@ public class CountryServiceImpl implements ICountryService {
         Optional<Country> optionalCountry = iCountryRepository.findById(countryRequestDto.getId());
 
         if (!optionalCountry.isPresent()) {
-            throw new Exception();
+            throw new CountryNotFoundException();
         }
 
 
