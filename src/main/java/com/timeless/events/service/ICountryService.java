@@ -13,7 +13,7 @@ import java.util.UUID;
 public interface ICountryService {
     void createCountry(CountryRequest countryRequestDto) throws Exception;
     List<CountryResponse> getAllCountry();
-    CountryResponse getCountryById(UUID id);
+    CountryResponse getCountryById(UUID id) throws Exception;
     void updateCountry(CountryRequest countryRequestDto) throws Exception;
     void deleteCountry(UUID id) throws Exception;
 }

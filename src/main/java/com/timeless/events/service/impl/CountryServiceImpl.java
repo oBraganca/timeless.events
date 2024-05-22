@@ -31,12 +31,12 @@ public class CountryServiceImpl implements ICountryService {
         Country country = iCountryRepository.findByName(countryRequestDto.getName());
 
         if(country != null){
-            throw new Exception();
+            throw new CountryNotFoundException("Name");
         }
 
         country = iCountryRepository.findByPhoneCountryCode(countryRequestDto.getPhoneCountryCode());
         if(country != null){
-            throw new Exception();
+            throw new CountryNotFoundException("Phone Country Code");
         }
 
         this.iCountryRepository.save(Country.builder()
@@ -50,9 +50,12 @@ public class CountryServiceImpl implements ICountryService {
     }
 
     @Override
-    public CountryResponse getCountryById(UUID id) {
-        Optional<Country> country = iCountryRepository.findById(id);
-        return new CountryResponse(country.get().getId(), country.get().getName(), country.get().getPhoneCountryCode());
+    public CountryResponse getCountryById(UUID id) throws Exception {
+        Optional<Country> optionalCountry = iCountryRepository.findById(id);
+        if(!optionalCountry.isPresent()){
+            throw new CountryNotFoundException("Id");
+        }
+        return new CountryResponse(optionalCountry.get().getId(), optionalCountry.get().getName(), optionalCountry.get().getPhoneCountryCode());
     }
 
     @Override
@@ -60,19 +63,19 @@ public class CountryServiceImpl implements ICountryService {
         Optional<Country> optionalCountry = iCountryRepository.findById(countryRequestDto.getId());
 
         if (!optionalCountry.isPresent()) {
-            throw new CountryNotFoundException();
+            throw new CountryNotFoundException("Id");
         }
 
 
         // Check if another country with the same name or phone country code already exists
         Country byName = iCountryRepository.findByNameAndIdNot(countryRequestDto.getName(), countryRequestDto.getId());
         if (byName != null) {
-            throw new Exception();
+            throw new CountryNotFoundException("Name");
         }
 
         Country byPhoneCountryCode = iCountryRepository.findByPhoneCountryCodeAndIdNot(countryRequestDto.getPhoneCountryCode(), countryRequestDto.getId());
         if (byPhoneCountryCode != null) {
-            throw new Exception();
+            throw new CountryNotFoundException("Phone Country Code");
         }
 
         Country existingCountry = optionalCountry.get();
@@ -88,7 +91,7 @@ public class CountryServiceImpl implements ICountryService {
         Optional<Country> optionalCountry = iCountryRepository.findById(id);
 
         if (!optionalCountry.isPresent()) {
-            throw new Exception();
+            throw new CountryNotFoundException("Id");
         }
 
         iCountryRepository.deleteById(id);
