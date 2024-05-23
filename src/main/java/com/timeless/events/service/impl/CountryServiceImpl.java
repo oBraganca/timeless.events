@@ -2,6 +2,7 @@ package com.timeless.events.service.impl;
 
 import com.timeless.events.dto.country.CountryRequest;
 import com.timeless.events.dto.country.CountryResponse;
+import com.timeless.events.handler.exceptions.AlreadyExistsException;
 import com.timeless.events.handler.exceptions.NotFoundException;
 import com.timeless.events.model.Country;
 import com.timeless.events.repository.ICountryRepository;
@@ -26,16 +27,18 @@ public class CountryServiceImpl implements ICountryService {
     @Override
     public void createCountry(CountryRequest countryRequestDto) throws Exception {
 
+
+
         Country country = iCountryRepository.findByName(countryRequestDto.getName());
 
         System.out.println(country);
         if(country != null){
-            throw new NotFoundException("Name");
+            throw new AlreadyExistsException("Name");
         }
 
         country = iCountryRepository.findByPhoneCountryCode(countryRequestDto.getPhoneCountryCode());
         if(country != null){
-            throw new NotFoundException("Phone Country Code");
+            throw new AlreadyExistsException("Phone Country Code");
         }
 
         country = Country.builder()
@@ -71,12 +74,12 @@ public class CountryServiceImpl implements ICountryService {
         // Check if another country with the same name or phone country code already exists
         Country byName = iCountryRepository.findByNameAndIdNot(countryRequestDto.getName(), countryRequestDto.getId());
         if (byName != null) {
-            throw new NotFoundException("Name");
+            throw new AlreadyExistsException("Name");
         }
 
         Country byPhoneCountryCode = iCountryRepository.findByPhoneCountryCodeAndIdNot(countryRequestDto.getPhoneCountryCode(), countryRequestDto.getId());
         if (byPhoneCountryCode != null) {
-            throw new NotFoundException("Phone Country Code");
+            throw new AlreadyExistsException("Phone Country Code");
         }
 
         Country existingCountry = optionalCountry.get();

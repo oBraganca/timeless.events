@@ -4,8 +4,9 @@ public enum InternalErrosEnum {
 
 
     ERR500("500", "Internal error."),
+    ERR402("402", "Invalid Request"),
     ERR404("404", "%s not found."),
-    ERR402("402", "Invalid Request");
+    ERR409("409", "%s Already Exists") ;
 
     private final String code;
     private final String message;

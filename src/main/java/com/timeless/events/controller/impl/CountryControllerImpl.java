@@ -40,21 +40,21 @@ public class CountryControllerImpl implements ICountryController {
 
     @Override
     @GetMapping("/countries/{id}")
-    public ResponseEntity<CountryResponse> getCountryById(UUID id) throws Exception {
+    public ResponseEntity<CountryResponse> getCountryById(@PathVariable("id") UUID id) throws Exception {
         return new ResponseEntity<>(iCountryService.getCountryById(id), HttpStatus.OK);
     }
 
 
     @Override
     @PutMapping("/countries/{id}")
-    public ResponseEntity<Void> updateCountry(UUID id ,CountryRequest countryRequestDto) throws Exception {
+    public ResponseEntity<Void> updateCountry(@PathVariable("id") UUID id ,CountryRequest countryRequestDto) throws Exception {
         iCountryService.updateCountry(id, countryRequestDto);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @DeleteMapping("countries/{id}")
     @Override
-    public ResponseEntity<Void> deleteCountry(UUID id) throws Exception {
+    public ResponseEntity<Void> deleteCountry(@PathVariable("id") UUID id) throws Exception {
         iCountryService.deleteCountry(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }

@@ -8,6 +8,8 @@ import java.util.UUID;
 
 @Entity
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name="countries")
 @Data
 public class Country  {
