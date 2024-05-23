@@ -1,14 +1,12 @@
 package com.timeless.events.service.impl;
 
-import com.timeless.events.controller.ICountryController;
 import com.timeless.events.dto.country.CountryRequest;
 import com.timeless.events.dto.country.CountryResponse;
-import com.timeless.events.handler.exceptions.CountryNotFoundException;
+import com.timeless.events.handler.exceptions.NotFoundException;
 import com.timeless.events.model.Country;
 import com.timeless.events.repository.ICountryRepository;
 import com.timeless.events.service.ICountryService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -31,12 +29,12 @@ public class CountryServiceImpl implements ICountryService {
         Country country = iCountryRepository.findByName(countryRequestDto.getName());
 
         if(country != null){
-            throw new CountryNotFoundException("Name");
+            throw new NotFoundException("Name");
         }
 
         country = iCountryRepository.findByPhoneCountryCode(countryRequestDto.getPhoneCountryCode());
         if(country != null){
-            throw new CountryNotFoundException("Phone Country Code");
+            throw new NotFoundException("Phone Country Code");
         }
 
         this.iCountryRepository.save(Country.builder()
@@ -53,7 +51,7 @@ public class CountryServiceImpl implements ICountryService {
     public CountryResponse getCountryById(UUID id) throws Exception {
         Optional<Country> optionalCountry = iCountryRepository.findById(id);
         if(!optionalCountry.isPresent()){
-            throw new CountryNotFoundException("Id");
+            throw new NotFoundException("Id");
         }
         return new CountryResponse(optionalCountry.get().getId(), optionalCountry.get().getName(), optionalCountry.get().getPhoneCountryCode());
     }
@@ -63,19 +61,19 @@ public class CountryServiceImpl implements ICountryService {
         Optional<Country> optionalCountry = iCountryRepository.findById(countryRequestDto.getId());
 
         if (!optionalCountry.isPresent()) {
-            throw new CountryNotFoundException("Id");
+            throw new NotFoundException("Id");
         }
 
 
         // Check if another country with the same name or phone country code already exists
         Country byName = iCountryRepository.findByNameAndIdNot(countryRequestDto.getName(), countryRequestDto.getId());
         if (byName != null) {
-            throw new CountryNotFoundException("Name");
+            throw new NotFoundException("Name");
         }
 
         Country byPhoneCountryCode = iCountryRepository.findByPhoneCountryCodeAndIdNot(countryRequestDto.getPhoneCountryCode(), countryRequestDto.getId());
         if (byPhoneCountryCode != null) {
-            throw new CountryNotFoundException("Phone Country Code");
+            throw new NotFoundException("Phone Country Code");
         }
 
         Country existingCountry = optionalCountry.get();
@@ -91,7 +89,7 @@ public class CountryServiceImpl implements ICountryService {
         Optional<Country> optionalCountry = iCountryRepository.findById(id);
 
         if (!optionalCountry.isPresent()) {
-            throw new CountryNotFoundException("Id");
+            throw new NotFoundException("Id");
         }
 
         iCountryRepository.deleteById(id);
