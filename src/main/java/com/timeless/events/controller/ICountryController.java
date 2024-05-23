@@ -13,8 +13,8 @@ import java.util.UUID;
 public interface ICountryController {
     ResponseEntity<Void> createCountry(CountryRequest countryRequestDto) throws Exception;
     ResponseEntity<List<CountryResponse>> getAllCountry();
-    ResponseEntity<CountryResponse> getCountryById(UUID id);
-    ResponseEntity<Void> updateCountry(CountryRequest countryRequestDto) throws Exception;
+    ResponseEntity<CountryResponse> getCountryById(UUID id) throws Exception;
+    ResponseEntity<Void> updateCountry(UUID id, CountryRequest countryRequestDto) throws Exception;
     ResponseEntity<Void> deleteCountry(UUID id) throws Exception;
 
 }

@@ -8,9 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.net.http.HttpClient;
 import java.util.List;
@@ -28,27 +26,33 @@ public class CountryControllerImpl implements ICountryController {
     }
 
     @Override
+    @PostMapping("/countries")
     public ResponseEntity<Void> createCountry(@RequestBody CountryRequest countryRequestDto) throws Exception{
         iCountryService.createCountry(countryRequestDto);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @Override
+    @GetMapping("/countries")
     public ResponseEntity<List<CountryResponse>> getAllCountry() {
         return new ResponseEntity<>(iCountryService.getAllCountry(), HttpStatus.OK);
     }
 
     @Override
-    public ResponseEntity<CountryResponse> getCountryById(UUID id) {
+    @GetMapping("/countries/{id}")
+    public ResponseEntity<CountryResponse> getCountryById(UUID id) throws Exception {
         return new ResponseEntity<>(iCountryService.getCountryById(id), HttpStatus.OK);
     }
 
+
     @Override
-    public ResponseEntity<Void> updateCountry(CountryRequest countryRequestDto) throws Exception {
-        iCountryService.updateCountry(countryRequestDto);
+    @PutMapping("/countries/{id}")
+    public ResponseEntity<Void> updateCountry(UUID id ,CountryRequest countryRequestDto) throws Exception {
+        iCountryService.updateCountry(id, countryRequestDto);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
+    @DeleteMapping("countries/{id}")
     @Override
     public ResponseEntity<Void> deleteCountry(UUID id) throws Exception {
         iCountryService.deleteCountry(id);

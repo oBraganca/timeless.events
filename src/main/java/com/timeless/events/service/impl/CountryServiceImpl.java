@@ -57,8 +57,8 @@ public class CountryServiceImpl implements ICountryService {
     }
 
     @Override
-    public void updateCountry(CountryRequest countryRequestDto) throws Exception {
-        Optional<Country> optionalCountry = iCountryRepository.findById(countryRequestDto.getId());
+    public void updateCountry(UUID id, CountryRequest countryRequestDto) throws Exception {
+        Optional<Country> optionalCountry = iCountryRepository.findById(id);
 
         if (!optionalCountry.isPresent()) {
             throw new NotFoundException("Id");
