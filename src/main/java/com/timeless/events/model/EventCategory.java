@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import java.util.UUID;
 
 @Entity
-@Table(name="event_category")
+@Table(name="event_categorys")
 public class EventCategory {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)

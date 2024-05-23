@@ -6,7 +6,7 @@ import java.util.Date;
 import java.util.UUID;
 
 @Entity
-@Table(name = "event")
+@Table(name = "events")
 public class Event {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -16,14 +16,12 @@ public class Event {
     private String title;
 
     @ManyToOne
-    @Column(nullable = false, name = "event_category_id")
     private EventCategory eventCaregoryId;
 
     @Column(nullable = false, name = "banner")
     private String banner;
 
     @ManyToOne
-    @Column(nullable = false, name = "country_id")
     private Country country;
 
     @Column(nullable = false, name="localtion_lat")

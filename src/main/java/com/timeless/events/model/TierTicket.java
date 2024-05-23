@@ -6,7 +6,7 @@ import java.util.Date;
 import java.util.UUID;
 
 @Entity
-@Table(name = "tier_ticket")
+@Table(name = "tier_tickets")
 public class TierTicket {
 
     @Id
@@ -17,10 +17,8 @@ public class TierTicket {
     private Float price;
 
     @ManyToOne
-    @Column(nullable = false, name = "event_id")
-    private String eventId;
+    private Event eventId;
 
     @ManyToOne
-    @Column(nullable = false, name = "tier_id")
     private Tier tierId;
 }

@@ -8,7 +8,7 @@ import java.util.UUID;
 
 @Entity
 @Builder
-@Table(name="country")
+@Table(name="countries")
 @Data
 public class Country  {
 
