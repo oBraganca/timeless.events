@@ -8,7 +8,7 @@ import java.util.UUID;
 @Data
 public class CountryRequest {
     @NotNull
-    private UUID     id;
+    private UUID id;
     @NotNull
     private String name;
     @NotNull

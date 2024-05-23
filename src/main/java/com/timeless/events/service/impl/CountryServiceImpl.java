@@ -28,6 +28,7 @@ public class CountryServiceImpl implements ICountryService {
 
         Country country = iCountryRepository.findByName(countryRequestDto.getName());
 
+        System.out.println(country);
         if(country != null){
             throw new NotFoundException("Name");
         }
@@ -37,10 +38,12 @@ public class CountryServiceImpl implements ICountryService {
             throw new NotFoundException("Phone Country Code");
         }
 
-        this.iCountryRepository.save(Country.builder()
+        country = Country.builder()
                 .name(countryRequestDto.getName())
-                .phoneCountryCode(countryRequestDto.getPhoneCountryCode())
-        );
+                .phoneCountryCode(countryRequestDto.getPhoneCountryCode()).build();
+
+        iCountryRepository.save(country);
+
     }
     @Override
     public List<CountryResponse> getAllCountry(){
