@@ -3,18 +3,22 @@ package com.timeless.events.controller;
 import com.timeless.events.dto.country.CountryRequest;
 import com.timeless.events.dto.country.CountryResponse;
 import com.timeless.events.model.Country;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 import java.util.UUID;
 
 @Validated
 public interface ICountryController {
-    ResponseEntity<Void> createCountry(CountryRequest countryRequestDto) throws Exception;
+    ResponseEntity<Void> createCountry(@Valid @RequestBody CountryRequest countryRequestDto) throws Exception;
     ResponseEntity<List<CountryResponse>> getAllCountry();
-    ResponseEntity<CountryResponse> getCountryById(UUID id) throws Exception;
-    ResponseEntity<Void> updateCountry(UUID id, CountryRequest countryRequestDto) throws Exception;
-    ResponseEntity<Void> deleteCountry(UUID id) throws Exception;
+    ResponseEntity<CountryResponse> getCountryById( @NotNull @PathVariable("id")UUID id) throws Exception;
+    ResponseEntity<Void> updateCountry(@NotNull @PathVariable("id") UUID id, @Valid @RequestBody CountryRequest countryRequestDto) throws Exception;
+    ResponseEntity<Void> deleteCountry(@NotNull @PathVariable("id") UUID id) throws Exception;
 
 }

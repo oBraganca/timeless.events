@@ -27,8 +27,6 @@ public class CountryServiceImpl implements ICountryService {
     @Override
     public void createCountry(CountryRequest countryRequestDto) throws Exception {
 
-
-
         Country country = iCountryRepository.findByName(countryRequestDto.getName());
 
         System.out.println(country);
@@ -72,12 +70,12 @@ public class CountryServiceImpl implements ICountryService {
 
 
         // Check if another country with the same name or phone country code already exists
-        Country byName = iCountryRepository.findByNameAndIdNot(countryRequestDto.getName(), countryRequestDto.getId());
+        Country byName = iCountryRepository.findByNameAndIdNot(countryRequestDto.getName(), id);
         if (byName != null) {
             throw new AlreadyExistsException("Name");
         }
 
-        Country byPhoneCountryCode = iCountryRepository.findByPhoneCountryCodeAndIdNot(countryRequestDto.getPhoneCountryCode(), countryRequestDto.getId());
+        Country byPhoneCountryCode = iCountryRepository.findByPhoneCountryCodeAndIdNot(countryRequestDto.getPhoneCountryCode(), id);
         if (byPhoneCountryCode != null) {
             throw new AlreadyExistsException("Phone Country Code");
         }
