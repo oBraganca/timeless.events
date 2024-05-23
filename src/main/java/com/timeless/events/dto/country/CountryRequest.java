@@ -1,16 +1,19 @@
 package com.timeless.events.dto.country;
 
+import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
-import org.antlr.v4.runtime.misc.NotNull;
+import jakarta.validation.constraints.NotNull;
 
 import java.util.UUID;
 
 @Data
 public class CountryRequest {
-    @NotNull
+
     private UUID id;
-    @NotNull
+
+    @NotBlank(message = "Name is mandatory")
     private String name;
-    @NotNull
+
+    @NotNull(message = "Phone Country Code is mandatory")
     private Integer phoneCountryCode;
 }

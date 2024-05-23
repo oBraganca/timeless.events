@@ -4,6 +4,7 @@ import com.timeless.events.controller.ICountryController;
 import com.timeless.events.dto.country.CountryRequest;
 import com.timeless.events.dto.country.CountryResponse;
 import com.timeless.events.service.ICountryService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,7 +28,7 @@ public class CountryControllerImpl implements ICountryController {
 
     @Override
     @PostMapping("/countries")
-    public ResponseEntity<Void> createCountry(@RequestBody CountryRequest countryRequestDto) throws Exception{
+    public ResponseEntity<Void> createCountry(@Valid @RequestBody CountryRequest countryRequestDto) throws Exception{
         iCountryService.createCountry(countryRequestDto);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
@@ -47,7 +48,7 @@ public class CountryControllerImpl implements ICountryController {
 
     @Override
     @PutMapping("/countries/{id}")
-    public ResponseEntity<Void> updateCountry(@PathVariable("id") UUID id ,CountryRequest countryRequestDto) throws Exception {
+    public ResponseEntity<Void> updateCountry(@PathVariable("id") UUID id , @Valid @RequestBody CountryRequest countryRequestDto) throws Exception {
         iCountryService.updateCountry(id, countryRequestDto);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
