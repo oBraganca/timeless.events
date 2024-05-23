@@ -1,6 +1,7 @@
 package com.timeless.events.handler;
 
 import com.timeless.events.dto.handler.CustomErrorResponse;
+import com.timeless.events.handler.exceptions.AlreadyExistsException;
 import com.timeless.events.handler.exceptions.BaseException;
 import com.timeless.events.handler.exceptions.InvalidRequestException;
 import com.timeless.events.handler.exceptions.NotFoundException;
@@ -26,6 +27,8 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         HttpStatus status;
         if (ex instanceof NotFoundException) {
             status = HttpStatus.NOT_FOUND;
+        } else if (ex instanceof AlreadyExistsException) {
+            status = HttpStatus.CONFLICT;
         } else if (ex instanceof InvalidRequestException) {
             status = HttpStatus.BAD_REQUEST;
         } else {
