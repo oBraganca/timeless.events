@@ -1,8 +1,7 @@
 package com.timeless.events.controller;
 
-import com.timeless.events.dto.country.CountryRequest;
-import com.timeless.events.dto.country.CountryResponse;
-import com.timeless.events.model.Country;
+import com.timeless.events.dto.entity.country.CountryRequest;
+import com.timeless.events.dto.entity.country.CountryResponse;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.http.ResponseEntity;

@@ -1,4 +1,4 @@
-package com.timeless.events.dto.country;
+package com.timeless.events.dto.entity.country;
 
 import lombok.Data;
 import org.antlr.v4.runtime.misc.NotNull;

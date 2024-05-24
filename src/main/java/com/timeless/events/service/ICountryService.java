@@ -1,9 +1,7 @@
 package com.timeless.events.service;
 
-import com.timeless.events.dto.country.CountryRequest;
-import com.timeless.events.dto.country.CountryResponse;
-import com.timeless.events.repository.ICountryRepository;
-import org.springframework.http.ResponseEntity;
+import com.timeless.events.dto.entity.country.CountryRequest;
+import com.timeless.events.dto.entity.country.CountryResponse;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

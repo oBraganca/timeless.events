@@ -1,4 +1,4 @@
-package com.timeless.events.dto.country;
+package com.timeless.events.dto.entity.country;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;

@@ -1,8 +1,8 @@
 package com.timeless.events.controller.impl;
 
 import com.timeless.events.controller.ICountryController;
-import com.timeless.events.dto.country.CountryRequest;
-import com.timeless.events.dto.country.CountryResponse;
+import com.timeless.events.dto.entity.country.CountryRequest;
+import com.timeless.events.dto.entity.country.CountryResponse;
 import com.timeless.events.service.ICountryService;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
@@ -12,7 +12,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import java.net.http.HttpClient;
 import java.util.List;
 import java.util.UUID;
 

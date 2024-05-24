@@ -1,7 +1,7 @@
 package com.timeless.events.service.impl;
 
-import com.timeless.events.dto.country.CountryRequest;
-import com.timeless.events.dto.country.CountryResponse;
+import com.timeless.events.dto.entity.country.CountryRequest;
+import com.timeless.events.dto.entity.country.CountryResponse;
 import com.timeless.events.handler.exceptions.AlreadyExistsException;
 import com.timeless.events.handler.exceptions.NotFoundException;
 import com.timeless.events.model.Country;
