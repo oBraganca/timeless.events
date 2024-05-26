@@ -77,6 +77,12 @@ public class TierServiceImpl implements ITierService {
 
     @Override
     public void deleteTier(UUID id) throws Exception {
+        Optional<Tier> optionalTier = iTierRepository.findById(id);
 
+        if(!optionalTier.isPresent()){
+            throw new NotFoundException("Id");
+        }
+
+        iTierRepository.deleteById(id);
     }
 }

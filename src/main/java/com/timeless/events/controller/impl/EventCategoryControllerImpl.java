@@ -6,7 +6,6 @@ import com.timeless.events.dto.entity.eventCategory.EventCategoryResponse;
 import com.timeless.events.service.IEventCategoryService;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
-import jdk.javadoc.doclet.Reporter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,12 +19,12 @@ import java.util.UUID;
 @Validated
 @RestController
 @RequestMapping("v1/")
-public class EventCategoryController implements IEventCategoryController {
+public class EventCategoryControllerImpl implements IEventCategoryController {
 
     private final IEventCategoryService iEventCategoryService;
 
     @Autowired
-    EventCategoryController (IEventCategoryService iEventCategoryService){
+    EventCategoryControllerImpl(IEventCategoryService iEventCategoryService){
         this.iEventCategoryService = iEventCategoryService;
     }
 
@@ -40,7 +39,7 @@ public class EventCategoryController implements IEventCategoryController {
     @Override
     @GetMapping(value = "event-categories")
     public ResponseEntity<List<EventCategoryResponse>> getAllEventCategory() {
-        return new ResponseEntity<>(iEventCategoryService.getAllEventCategories(), HttpStatus.OK);
+        return new ResponseEntity<>(iEventCategoryService.getAllEventCategories(), HttpStatus.CREATED);
     }
 
     @Override
