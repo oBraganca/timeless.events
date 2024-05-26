@@ -17,7 +17,7 @@ public interface IEventCategoryRepository extends JpaRepository<EventCategory, U
     Optional<EventCategory> findById(UUID id);
 
     EventCategory findByTitle(String title);
-    EventCategory findByTileAndIdNot(String title, UUID id);
+    EventCategory findByTitleAndIdNot(String title, UUID id);
 
     @Query("SELECT new com.timeless.events.dto.entity.eventCategory.EventCategoryResponse(e.id, e.title) FROM EventCategory e")
     List<EventCategoryResponse> findAllEventCategoryDTO();

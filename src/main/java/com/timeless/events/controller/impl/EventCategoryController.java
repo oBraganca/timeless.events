@@ -57,6 +57,7 @@ public class EventCategoryController implements IEventCategoryController {
 
     @Override
     public ResponseEntity<Void> deleteEventCategory(@NotNull @PathVariable("id") UUID id) throws Exception {
-        return null;
+        iEventCategoryService.deleteEventCategory(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

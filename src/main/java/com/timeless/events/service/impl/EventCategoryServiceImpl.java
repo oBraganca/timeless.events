@@ -4,7 +4,6 @@ import com.timeless.events.dto.entity.eventCategory.EventCategoryRequest;
 import com.timeless.events.dto.entity.eventCategory.EventCategoryResponse;
 import com.timeless.events.handler.exceptions.AlreadyExistsException;
 import com.timeless.events.handler.exceptions.NotFoundException;
-import com.timeless.events.model.Country;
 import com.timeless.events.model.EventCategory;
 import com.timeless.events.repository.IEventCategoryRepository;
 import com.timeless.events.service.IEventCategoryService;
@@ -65,7 +64,7 @@ public class EventCategoryServiceImpl implements IEventCategoryService {
             throw new NotFoundException("Id");
         }
 
-        EventCategory eventCategory = iEventCategoryRepository.findByTileAndIdNot(eventCategoryRequest.getTitle(), id);
+        EventCategory eventCategory = iEventCategoryRepository.findByTitleAndIdNot(eventCategoryRequest.getTitle(), id);
         if(eventCategory != null){
             throw new AlreadyExistsException("Title");
         }
@@ -79,6 +78,12 @@ public class EventCategoryServiceImpl implements IEventCategoryService {
 
     @Override
     public void deleteEventCategory(UUID id) throws Exception {
+        Optional<EventCategory> optionalEventCategory = iEventCategoryRepository.findById(id);
 
+        if(!optionalEventCategory.isPresent()){
+            throw new NotFoundException("Id");
+        }
+
+        iEventCategoryRepository.deleteById(id);
     }
 }
