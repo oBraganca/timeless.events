@@ -33,10 +33,11 @@ public class EventCategoryServiceImpl implements IEventCategoryService {
         }
 
 
-        eventCategory = EventCategory.builder()
-                .title(eventCategoryRequest.getTitle()).build();
-
-        iEventCategoryRepository.save(eventCategory);
+        iEventCategoryRepository.save(
+                EventCategory.builder()
+                .title(
+                        eventCategoryRequest.getTitle()
+                ).build());
     }
 
     @Override
