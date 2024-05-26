@@ -50,12 +50,14 @@ public class EventCategoryController implements IEventCategoryController {
     }
 
     @Override
+    @PutMapping(value = "event-categories/{id}")
     public ResponseEntity<Void> updateEventCategory(@NotNull @PathVariable("id") UUID id, @Valid @RequestBody  EventCategoryRequest eventCategoryRequest) throws Exception {
         iEventCategoryService.updateEventCategory(id, eventCategoryRequest);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @Override
+    @DeleteMapping(value = "event-categories/{id}")
     public ResponseEntity<Void> deleteEventCategory(@NotNull @PathVariable("id") UUID id) throws Exception {
         iEventCategoryService.deleteEventCategory(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
