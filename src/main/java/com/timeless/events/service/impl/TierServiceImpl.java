@@ -8,11 +8,13 @@ import com.timeless.events.model.EventCategory;
 import com.timeless.events.model.Tier;
 import com.timeless.events.repository.ITierRepository;
 import com.timeless.events.service.ITierService;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+@Service
 public class TierServiceImpl implements ITierService {
     private final ITierRepository iTierRepository;
 
