@@ -24,7 +24,7 @@ public class Event {
     private String title;
 
     @ManyToOne
-    private EventCategory eventCaregoryId;
+    private EventCategory eventCategoryId;
 
     @Column(nullable = false, name = "banner")
     private String banner;
