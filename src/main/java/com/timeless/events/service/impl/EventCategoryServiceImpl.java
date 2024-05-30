@@ -58,6 +58,15 @@ public class EventCategoryServiceImpl implements IEventCategoryService {
     }
 
     @Override
+    public EventCategory getEventCategoryEntityById(UUID id) throws Exception {
+        Optional<EventCategory> optionalEventCategory = iEventCategoryRepository.findById(id);
+        if (!optionalEventCategory.isPresent()) {
+            throw new NotFoundException("Id");
+        }
+        return optionalEventCategory.get();
+    }
+
+    @Override
     public void updateEventCategory(UUID id, EventCategoryRequest eventCategoryRequest) throws Exception {
         Optional<EventCategory> optionalEventCategory = iEventCategoryRepository.findById(id);
 

@@ -30,7 +30,7 @@ public class Event {
     private String banner;
 
     @ManyToOne
-    private Country country;
+    private Country countryId;
 
     @Column(nullable = false, name="localtion_lat")
     private Integer locationLat;

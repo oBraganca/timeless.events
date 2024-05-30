@@ -22,6 +22,14 @@ public class TierServiceImpl implements ITierService {
         this.iTierRepository = iTierRepository;
     }
 
+    @Override
+    public Tier getTierEntityById(UUID id) throws Exception {
+        Optional<Tier> optionalTier = iTierRepository.findById(id);
+        if (!optionalTier.isPresent()) {
+            throw new NotFoundException("Id");
+        }
+        return optionalTier.get();
+    }
 
     @Override
     public void createTier(TierRequest tierRequest) throws Exception {

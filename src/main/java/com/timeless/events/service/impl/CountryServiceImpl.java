@@ -5,6 +5,7 @@ import com.timeless.events.dto.entity.country.CountryResponse;
 import com.timeless.events.handler.exceptions.AlreadyExistsException;
 import com.timeless.events.handler.exceptions.NotFoundException;
 import com.timeless.events.model.Country;
+import com.timeless.events.model.EventCategory;
 import com.timeless.events.repository.ICountryRepository;
 import com.timeless.events.service.ICountryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,6 +59,15 @@ public class CountryServiceImpl implements ICountryService {
             throw new NotFoundException("Id");
         }
         return new CountryResponse(optionalCountry.get().getId(), optionalCountry.get().getName(), optionalCountry.get().getPhoneCountryCode());
+    }
+
+    @Override
+    public Country getCountryEntityById(UUID id) throws Exception {
+        Optional<Country> optionalCountry = iCountryRepository.findById(id);
+        if (!optionalCountry.isPresent()) {
+            throw new NotFoundException("Id");
+        }
+        return optionalCountry.get();
     }
 
     @Override

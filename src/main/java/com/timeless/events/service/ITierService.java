@@ -4,6 +4,8 @@ import com.timeless.events.dto.entity.eventCategory.EventCategoryRequest;
 import com.timeless.events.dto.entity.eventCategory.EventCategoryResponse;
 import com.timeless.events.dto.entity.tier.TierRequest;
 import com.timeless.events.dto.entity.tier.TierResponse;
+import com.timeless.events.model.EventCategory;
+import com.timeless.events.model.Tier;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,6 +16,7 @@ public interface ITierService {
     void createTier(TierRequest tierRequest) throws Exception;
     List<TierResponse> getAllTiers();
     TierResponse getTierById(UUID id) throws Exception;
+    Tier getTierEntityById(UUID id) throws Exception;
     void updateTier(UUID id, TierRequest tierRequest) throws Exception;
     void deleteTier(UUID id) throws Exception;
 }
